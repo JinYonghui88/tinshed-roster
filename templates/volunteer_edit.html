@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block title %}Edit volunteer{% endblock %}
+{% block content %}<div class="page-heading"><div><p class="eyebrow">Volunteers</p><h1>Edit {{ volunteer.name }}</h1></div><a href="{{ url_for('volunteers') }}">Back to volunteers</a></div><div class="form-page"><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><label>Name <input name="name" required maxlength="120" value="{{ request.form.get('name', volunteer.name) }}"></label><label>Email <input name="email" type="email" maxlength="200" value="{{ request.form.get('email', volunteer.email) }}"></label><label>Phone <input name="phone" type="tel" maxlength="40" value="{{ request.form.get('phone', volunteer.phone) }}"></label><button class="button primary" type="submit">Save changes</button></form></div>{% endblock %}
+

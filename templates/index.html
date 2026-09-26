@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">Season workspace</p><h1>Overview</h1><p class="lede">Keep every performance and crew assignment in one place.</p></div><a class="button primary" href="{{ url_for('performances') }}">Manage performances</a></div>
+<div class="stats" aria-label="Project totals"><div><strong>{{ counts.performances }}</strong><span>Performances</span></div><div><strong>{{ counts.productions }}</strong><span>Productions</span></div><div><strong>{{ counts.volunteers }}</strong><span>Active volunteers</span></div></div>
+<section class="section-heading"><h2>Performance roster</h2><a href="{{ url_for('performances') }}">View all</a></section>
+{% if performances %}
+<div class="table-wrap"><table><thead><tr><th>Production</th><th>Date & time</th><th>Venue</th><th>Crew filled</th><th><span class="sr-only">Action</span></th></tr></thead><tbody>{% for item in performances %}<tr><td><strong>{{ item.title }}</strong></td><td>{{ item.starts_at|replace('T', ' ') }}</td><td>{{ item.venue or 'Not set' }}</td><td><span class="count">{{ item.assigned }} / {{ roles|length }}</span></td><td><a href="{{ url_for('performance', performance_id=item.id) }}">Open roster</a></td></tr>{% endfor %}</tbody></table></div>
+{% else %}<div class="empty"><h3>No performances yet</h3><p>Add a production, then schedule its first performance.</p><a class="button" href="{{ url_for('productions') }}">Add a production</a></div>{% endif %}
+{% endblock %}
+
