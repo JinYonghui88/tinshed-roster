@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Roster{% endblock %} · The Tinshed Players</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">TP</span><span>The Tinshed Players <small>Crew roster</small></span></a>
+      <nav aria-label="Primary navigation">
+        <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Overview</a>
+        <a href="{{ url_for('performances') }}" {% if request.endpoint in ('performances', 'performance', 'edit_performance') %}aria-current="page"{% endif %}>Performances</a>
+        <a href="{{ url_for('productions') }}" {% if request.endpoint in ('productions', 'edit_production') %}aria-current="page"{% endif %}>Productions</a>
+        <a href="{{ url_for('volunteers') }}" {% if request.endpoint in ('volunteers', 'edit_volunteer') %}aria-current="page"{% endif %}>Volunteers</a>
+        <a href="{{ url_for('my_roster') }}" {% if request.endpoint == 'my_roster' %}aria-current="page"{% endif %}>My roster</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="notice {{ category }}" role="status">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">The Tinshed Players · Fictional teaching case · Demo data only</footer>
+</body>
+</html>
+
