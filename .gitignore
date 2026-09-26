@@ -7,4 +7,6 @@ instance/
 *.sqlite3
 *.db
 .DS_Store
+tmp/
+output/
 
