@@ -8,12 +8,15 @@
 - 图片中的 *The Tinshed Players* 是主题和虚构需求材料。其“团队两周冲刺、Jira、Confluence、8–15 个故事”等叙述不是这份个人 A2 brief 的强制要求；不应伪造团队协作、访谈或供应商答复。
 - GitHub 主页 `https://github.com/ShiYuxuan88` 已核实存在。项目启动时本机登录的是其他账号；现已由用户完成 `ShiYuxuan88` 的官方设备授权并核验身份。
 
-### 当前执行状态（2026-09-27）
+### 当前执行状态（2026-09-28）
 
 - 已建立公开仓库：`https://github.com/ShiYuxuan88/tinshed-roster`，默认分支为 `main`。
 - 排班应用、README、配置文件、六项自动化测试和 CI 已上传。PR `https://github.com/ShiYuxuan88/tinshed-roster/pull/1` 已合并；版本 `v0.1.0` 已发布。
+- `JinYonghui88` 已通过 GitHub CLI 和 API 核验；新仓库 `https://github.com/JinYonghui88/tinshed-roster` 已创建，`main` 和 `v0.1.0` 已推送，默认分支为 `main`，推送触发的 CI 已通过。本地 `origin` 指向新仓库，`legacy` 保留旧仓库地址。
 - 本地六项测试通过，GitHub CI 通过，浏览器中的岗位分配流程已验证，Waitress 的 `/health` 返回 `ok`。当前机器没有 Docker，容器镜像尚未实测。
-- **仍待完成：** RFP 的官方来源研究及采购 PDF、配置管理报告 PDF、报告截图和引用核对、Blackboard 上传及回执。此仓库成果尚不等于已完成 A2 提交。
+- 采购 RFP 和配置管理报告两份英文 PDF 已在本地生成并逐页检查；RFP 的公开价格来源已重新核对。两份 PDF 尚引用 `ShiYuxuan88/tinshed-roster`，其中配置管理报告的 PR、CI、发布截图也是该旧仓库的真实历史证据。
+- **仍待完成：** 更新两份 PDF 的当前仓库链接，并把旧账号的 PR、CI、发布证据明确标为原仓库历史，不能暗示它们发生在新仓库。核对最终 PDF 后完成 Blackboard 上传并保存回执。
+- 当前机器没有 Docker，容器构建、持久卷恢复和公开部署均未验证。本地 6 项测试于 2026-09-27 再次通过；另以 `APP_ENV=production`、临时 SQLite 文件和 Waitress 运行两次，`/health` 均返回 `ok`，重启后仍可读取虚构义工。这证明本机进程重启持久性，不证明容器或云端持久卷行为。
 
 ## 1. 完成目标与最终交付
 
@@ -45,7 +48,7 @@ PDF 文件名严格按 brief 的两个模式命名：`Your_StudentID_ISYS3001_Co
 
 ## 3. 仓库与配置管理流程
 
-1. **账号门槛**：让 GitHub CLI 使用 `ShiYuxuan88` 登录；核对 `gh api user --jq .login` 的返回值。保持现有其他账号不受影响。在该账号下创建公开仓库，记录真实 URL。未通过此检查不执行创建或推送。
+1. **账号门槛**：目标账号 `JinYonghui88` 已通过 `gh api user --jq .login` 核验；新仓库已创建并推送。旧仓库 `ShiYuxuan88/tinshed-roster` 保留为已有历史证据；新仓库的 PR、CI 或 release 只能在实际产生并验证后写入报告。
 2. **仓库基线**：`main` 为稳定分支；加入 `README.md`、`LICENSE`（若选定）、`.gitignore`、`.env.example`、依赖清单、源码、测试、`CHANGELOG.md`。文档中说明虚构案例来源、安装/运行/测试命令、配置项和已知限制。绝不提交 `.env`、数据库文件、密钥或真实个人信息。
 3. **真实增量历史**：以 `feature/data-model`、`feature/roster-ui`、`feature/assignment-rules`、`chore/deployment-config` 等短分支逐项工作。每一阶段提交可运行的变化，消息写明实际目的；通过 GitHub PR 合并并保留说明与测试结果。不事后编造提交时间或团队审查记录。
 4. **配置/部署**：集中读取环境变量；提供 `.env.example`、依赖版本固定文件、数据库初始化命令、`Dockerfile` 或等效部署脚本、健康检查、测试与构建 CI。区分开发和生产配置；生产关闭 debug，配置从环境注入。验证全新克隆后按 README 启动，而不是只验证当前机器。
@@ -109,11 +112,11 @@ PDF 文件名严格按 brief 的两个模式命名：`Your_StudentID_ISYS3001_Co
 
 ## 8. 风险、应对与最后检查
 
-- **GitHub 身份错误**：本机当前授权不属于 `ShiYuxuan88`。建立远程仓库与推送前必须验证登录；不得上传到其他账号。
+- **GitHub 证据错位**：当前活动登录已核实为 `JinYonghui88`。报告须区分新仓库地址和旧仓库的 PR、CI、截图来源；推送 Git 历史不会将旧账号的 PR 和 Actions 记录迁入新仓库。
 - **交期与成绩不确定**：HD 是评分目标，不是可保证结果。报告需呈现判断、取舍与证据，避免仅堆叠术语或截图。
 - **需求膨胀**：案例中票务、会员、短信等已明确超出本次应用的核心排班范围。记录为 backlog，完成主要交付后再考虑。
 - **采购资料变化**：服务价格和配额随时会变；只采用有日期的官方资料，不推测实际供应商报价。
 - **个人信息泄露**：公开仓库、截图和演示数据不用学号、真实联系方式、密钥。提交 PDF 文件名按学校规定单独处理。
 - **学术诚信**：代码、文字和决策须由学生理解并检查；核对课程对生成式 AI 的具体要求，按适用规定披露使用情况。
 
-提交前逐项检查：仓库在 `ShiYuxuan88` 下可访问；README 命令可从新克隆执行；默认分支含最终代码；分支/PR/tag/CI 证据真实可见；PDF 的仓库链接可点击；RFP 十节及评分权重完整；两份 PDF 命名准确；Blackboard 显示提交成功并保存回执。
+提交前逐项检查：`JinYonghui88` 下的新仓库可访问，PDF 明确给出该账号和仓库链接；README 命令可从新克隆执行；默认分支含最终代码；旧仓库和新仓库的分支/PR/tag/CI 证据分别准确标注来源；PDF 的链接可点击；RFP 十节及评分权重完整；两份 PDF 命名准确；Blackboard 显示提交成功并保存回执。
