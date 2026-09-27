@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a CI container build and restart-persistence smoke check with fictional data.
 - Linked the project to the JinYonghui88 submission repository and documented evidence provenance.
 - Completed the v0.1.0 release history and updated the submission status.
 

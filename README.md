@@ -47,7 +47,7 @@ Do not commit `.env`, SQLite databases, or secrets. Copy `.env.example` only as 
 .\.venv\Scripts\waitress-serve.exe --listen=127.0.0.1:8000 app:app
 ```
 
-`Dockerfile` and `.github/workflows/ci.yml` provide repeatable build and test configuration. The database needs a persistent writable volume outside the container; the sample image uses `/data/tinshed.sqlite3`. HTTPS, authentication, backups, and access control are not implemented, so any public hosting must remain a demonstration with fictional data.
+`Dockerfile` and `.github/workflows/ci.yml` provide repeatable build and test configuration. CI runs pytest and builds the production image, then checks `/health` and fictional data across a container restart with a temporary host-mounted volume. The database needs a persistent writable volume outside the container; the image uses `/data/tinshed.sqlite3`. This CI check does not verify a cloud deployment or backup restoration. HTTPS, authentication, backups, and access control are not implemented, so any public hosting must remain a demonstration with fictional data.
 
 ## Project layout
 
