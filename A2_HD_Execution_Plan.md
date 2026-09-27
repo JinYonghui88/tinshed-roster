@@ -13,10 +13,11 @@
 - 已建立公开仓库：`https://github.com/ShiYuxuan88/tinshed-roster`，默认分支为 `main`。
 - 排班应用、README、配置文件、六项自动化测试和 CI 已上传。PR `https://github.com/ShiYuxuan88/tinshed-roster/pull/1` 已合并；版本 `v0.1.0` 已发布。
 - `JinYonghui88` 已通过 GitHub CLI 和 API 核验；新仓库 `https://github.com/JinYonghui88/tinshed-roster` 已创建，`main` 和 `v0.1.0` 已推送，默认分支为 `main`，推送触发的 CI 已通过。本地 `origin` 指向新仓库，`legacy` 保留旧仓库地址。
+- 新账号提交 `d385560` 已在 GitHub 上归属 `JinYonghui88`；新仓库 PR #1 合并为 `ff80a86`。合并后 CI 运行 `36334981571` 的 pytest 和容器构建/重启持久性检查均通过，使用的是虚构数据和临时挂载目录。
 - 本地六项测试通过，GitHub CI 通过，浏览器中的岗位分配流程已验证，Waitress 的 `/health` 返回 `ok`。当前机器没有 Docker，容器镜像尚未实测。
 - 采购 RFP 和配置管理报告两份英文 PDF 已重新生成，各 6 页并逐页检查；RFP 的公开价格来源已重新核对。两份 PDF 均指向 `JinYonghui88/tinshed-roster`；配置管理报告将旧账号的 PR、CI、发布截图明确标为原仓库历史，并引用新仓库实际通过的 CI。旧 PR、发布页和新 CI 链接已核验。
 - **仍待完成：** 学生复核最终 PDF 与课程 AI 使用要求，确认 Blackboard 的实时截止时间，上传两份 PDF 和新仓库链接/用户名，并保存提交成功回执。仓库建成和本地 PDF 存在均不等于已经提交。
-- 当前机器没有 Docker，容器构建、持久卷恢复和公开部署均未验证。本地 6 项测试于 2026-09-27 再次通过；另以 `APP_ENV=production`、临时 SQLite 文件和 Waitress 运行两次，`/health` 均返回 `ok`，重启后仍可读取虚构义工。这证明本机进程重启持久性，不证明容器或云端持久卷行为。
+- 当前机器没有 Docker；GitHub Actions 已构建容器并验证临时挂载目录上的重启持久性。公开云部署、正式持久卷和备份恢复仍未验证。本地 6 项测试于 2026-09-28 再次通过；另以 `APP_ENV=production`、临时 SQLite 文件和 Waitress 运行两次，`/health` 均返回 `ok`，重启后仍可读取虚构义工。
 
 ## 1. 完成目标与最终交付
 
@@ -48,7 +49,7 @@ PDF 文件名严格按 brief 的两个模式命名：`Your_StudentID_ISYS3001_Co
 
 ## 3. 仓库与配置管理流程
 
-1. **账号门槛**：目标账号 `JinYonghui88` 已通过 `gh api user --jq .login` 核验；新仓库已创建并推送。旧仓库 `ShiYuxuan88/tinshed-roster` 保留为已有历史证据；新仓库的 PR、CI 或 release 只能在实际产生并验证后写入报告。
+1. **账号门槛**：目标账号 `JinYonghui88` 已通过 `gh api user --jq .login` 核验；新仓库、实际归属该账号的提交、PR #1 和 CI 均已验证。旧仓库 `ShiYuxuan88/tinshed-roster` 保留为已有历史证据；新仓库尚未发布单独的 GitHub Release。
 2. **仓库基线**：`main` 为稳定分支；加入 `README.md`、`LICENSE`（若选定）、`.gitignore`、`.env.example`、依赖清单、源码、测试、`CHANGELOG.md`。文档中说明虚构案例来源、安装/运行/测试命令、配置项和已知限制。绝不提交 `.env`、数据库文件、密钥或真实个人信息。
 3. **真实增量历史**：以 `feature/data-model`、`feature/roster-ui`、`feature/assignment-rules`、`chore/deployment-config` 等短分支逐项工作。每一阶段提交可运行的变化，消息写明实际目的；通过 GitHub PR 合并并保留说明与测试结果。不事后编造提交时间或团队审查记录。
 4. **配置/部署**：集中读取环境变量；提供 `.env.example`、依赖版本固定文件、数据库初始化命令、`Dockerfile` 或等效部署脚本、健康检查、测试与构建 CI。区分开发和生产配置；生产关闭 debug，配置从环境注入。验证全新克隆后按 README 启动，而不是只验证当前机器。
