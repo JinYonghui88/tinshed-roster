@@ -14,8 +14,8 @@
 - 排班应用、README、配置文件、六项自动化测试和 CI 已上传。PR `https://github.com/ShiYuxuan88/tinshed-roster/pull/1` 已合并；版本 `v0.1.0` 已发布。
 - `JinYonghui88` 已通过 GitHub CLI 和 API 核验；新仓库 `https://github.com/JinYonghui88/tinshed-roster` 已创建，`main` 和 `v0.1.0` 已推送，默认分支为 `main`，推送触发的 CI 已通过。本地 `origin` 指向新仓库，`legacy` 保留旧仓库地址。
 - 本地六项测试通过，GitHub CI 通过，浏览器中的岗位分配流程已验证，Waitress 的 `/health` 返回 `ok`。当前机器没有 Docker，容器镜像尚未实测。
-- 采购 RFP 和配置管理报告两份英文 PDF 已在本地生成并逐页检查；RFP 的公开价格来源已重新核对。两份 PDF 尚引用 `ShiYuxuan88/tinshed-roster`，其中配置管理报告的 PR、CI、发布截图也是该旧仓库的真实历史证据。
-- **仍待完成：** 更新两份 PDF 的当前仓库链接，并把旧账号的 PR、CI、发布证据明确标为原仓库历史，不能暗示它们发生在新仓库。核对最终 PDF 后完成 Blackboard 上传并保存回执。
+- 采购 RFP 和配置管理报告两份英文 PDF 已重新生成，各 6 页并逐页检查；RFP 的公开价格来源已重新核对。两份 PDF 均指向 `JinYonghui88/tinshed-roster`；配置管理报告将旧账号的 PR、CI、发布截图明确标为原仓库历史，并引用新仓库实际通过的 CI。旧 PR、发布页和新 CI 链接已核验。
+- **仍待完成：** 学生复核最终 PDF 与课程 AI 使用要求，确认 Blackboard 的实时截止时间，上传两份 PDF 和新仓库链接/用户名，并保存提交成功回执。仓库建成和本地 PDF 存在均不等于已经提交。
 - 当前机器没有 Docker，容器构建、持久卷恢复和公开部署均未验证。本地 6 项测试于 2026-09-27 再次通过；另以 `APP_ENV=production`、临时 SQLite 文件和 Waitress 运行两次，`/health` 均返回 `ok`，重启后仍可读取虚构义工。这证明本机进程重启持久性，不证明容器或云端持久卷行为。
 
 ## 1. 完成目标与最终交付
